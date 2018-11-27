@@ -35,7 +35,8 @@ public class Platform : MonoBehaviour {
         if (collision.collider.tag == "Player" && !stepped)
         {
             stepped = true;
-            //점수증가();
+            //점수증가 실행;
+            GameManager.instance.AddScore(1);
         }
     }
 }

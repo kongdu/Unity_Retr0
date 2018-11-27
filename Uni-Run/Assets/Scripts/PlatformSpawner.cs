@@ -22,9 +22,57 @@ public class PlatformSpawner : MonoBehaviour {
 
     void Start() {
         // 변수들을 초기화하고 사용할 발판들을 미리 생성
+        //사용할 발판들을 생성
+        platforms = new GameObject[count]; //count갯수만큼 방을 가진 배열 생성
+
+        for (int i = 0; i < count; i++)
+        {
+            //platformPrefab을 원본으로 새 발판을 poolPosition에 생성
+            //생성한 발판을 배열에 할당
+            platforms[i] = Instantiate(platformPrefab, poolPosition, Quaternion.identity);
+        }
+
+
+        //마지막 배치 시점을 리셋
+        lastSpawnTime = 0;
+        timeBetSpawn = 0;
     }
 
     void Update() {
         // 순서를 돌아가며 주기적으로 발판을 배치
+        if (GameManager.instance.isGameover)
+        {
+            return;
+        }
+
+        //마지막(최근) 배치시점에서 timeBetSpawn이상의 시간이 흘렀으면
+        //현재시간이 최근 배치시점+timeBetSpawn보다 크다
+        if (Time.time >= lastSpawnTime + timeBetSpawn)
+        {
+            //최근 배치
+            lastSpawnTime = Time.time;
+
+            //다음 배치까지의 시간간격으로 랜덤 변경
+            timeBetSpawn = Random.RandomRange(timeBetSpawnMin, timeBetSpawnMax);
+
+            //배치할 높이를 랜덤 설정
+            float yPos = Random.Range(yMin, yMax);
+
+            //현재 순번의 발판을 껐다 켜기도 리셋(OnEnable()이 자동 실행됨)
+            platforms[currentIndex].SetActive(false);
+            platforms[currentIndex].SetActive(true);
+
+            //현재 순번의 발판의 위치를 화면 오른쪽으로 옮기기
+            platforms[currentIndex].transform.position = new Vector2(xPos, yPos);
+
+            //순번 넘기기
+            currentIndex++;
+
+            //마지막 순번에 도달했다면 순번을 0부터 다시 시작
+            if(currentIndex >= count)
+            {
+                currentIndex = 0;
+            }
+        }
     }
 }
