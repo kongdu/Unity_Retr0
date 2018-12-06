@@ -53,8 +53,7 @@ public class PlayerShooter : MonoBehaviour {
         }
     }
 
-    public Transform lookTarget;
-
+    //public Transform lookTarget;
 
     // 애니메이터의 IK 갱신
     private void OnAnimatorIK(int layerIndex) {
@@ -77,7 +76,7 @@ public class PlayerShooter : MonoBehaviour {
         playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, rightHandMount.position);
         playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, rightHandMount.rotation);
 
-        playerAnimator.SetLookAtWeight(0);
-        playerAnimator.SetLookAtPosition(lookTarget.position);
+        //playerAnimator.SetLookAtWeight(0);
+        //playerAnimator.SetLookAtPosition(lookTarget.position);
     }
 }

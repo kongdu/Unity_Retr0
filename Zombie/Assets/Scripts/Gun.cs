@@ -12,8 +12,6 @@ public class Gun : MonoBehaviour
         Reloading // 재장전 중 2
     }
 
-
-
     public State state { get; private set; } // 현재 총의 상태 //외부에서는 값을 읽을수만있고 내부에서는 set 
 
     public Transform fireTransform; // 총알이 발사될 위치
