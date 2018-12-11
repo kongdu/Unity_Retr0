@@ -57,6 +57,8 @@ public class ItemSpawner : MonoBehaviour {
         // center를 중심으로 반지름이 maxDistance인 구 안에서의 랜덤한 위치 하나를 저장
         // Random.insideUnitSphere는 반지름이 1인 구 안에서의 랜덤한 한 점을 반환하는 프로퍼티
         Vector3 randomPos = Random.insideUnitSphere * distance + center;
+        //Random.insideUnitSphere : 반지름이 1인 구 내에서 아무점이나 찍어준다.
+        //center를 더해주면 center의 위치에서 distance거리만큼의 공안에서 
 
         // 내비메시 샘플링의 결과 정보를 저장하는 변수
         NavMeshHit hit;

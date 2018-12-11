@@ -22,13 +22,13 @@ public class GameManager : MonoBehaviour {
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
     private int score = 0; // 현재 게임 점수
-    public bool isGameover { get; private set; } // 게임 오버 상태
+    public bool isGameover { get; private set; } // 게임 오버 상태 //자동생성프로퍼티 :읽기와쓰기구분할때 만든다
 
     private void Awake() {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
         if (instance != this)
         {
-            // 자신을 파괴
+            // 자신을 파괴 ;싱글톤은 두개가있으면안되니까
             Destroy(gameObject);
         }
     }
